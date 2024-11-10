@@ -21,6 +21,9 @@ author: Arpit Jain
 
 navbar-links:
   Past Recipients: "aboutme"
+  Publications: "publications"
+  Eligibility: "eligibility"
+  Contact: "contact"
 
 ################
 # --- Logo --- #
