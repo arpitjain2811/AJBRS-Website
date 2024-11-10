@@ -10,21 +10,17 @@
 ############################
 
 # Name of website
-title: My website
+title: Arpit Jain Best Researcher Scholarship (AJBRS)
 
 # Your name to show in the footer
-author: Some Person
+author: Arpit Jain
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Past Recipients: "aboutme"
 
 ################
 # --- Logo --- #
