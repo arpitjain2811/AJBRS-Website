@@ -20,9 +20,9 @@ author: Arpit Jain
 ###############################################
 
 navbar-links:
-  Past Recipients: "aboutme"
+  Past Recipients: "past_recipients"
   Publications: "publications"
-  Eligibility: "eligibility"
+  How to Apply: "how_to_apply"
   Contact: "contact"
 
 ################
