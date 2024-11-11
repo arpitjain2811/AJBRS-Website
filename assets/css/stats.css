@@ -1,0 +1,27 @@
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    max-width: 300px;
+}
+
+.stat-number {
+    color: #C41E3A; /* Red color similar to the image */
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.stat-description {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #333;
+}
