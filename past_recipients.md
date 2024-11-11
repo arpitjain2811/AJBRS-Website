@@ -7,7 +7,7 @@ title: Past Recipients
 ## 2024
 * Harshit M
 * [Siddh Bharadwaj](https://www.linkedin.com/in/siddh-bhardwaj-45a7b8210/)
-* Pushkar Bhat
+* [Pushkar Bhat](https://www.linkedin.com/in/pushkar-bhat/)
 * [Karthik Shenoy](https://www.linkedin.com/in/karthikshenoy7/)
 
 ## 2023
