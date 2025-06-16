@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initHoverEffects();
   initTimelineAnimation();
   initPublicationFilter();
+  initTestimonialSlider();
 });
 
 // Animated Statistics Counter
@@ -330,4 +331,62 @@ function initPublicationFilter() {
       });
     }
   }
+}
+
+// Testimonial Slider
+function initTestimonialSlider() {
+  const testimonialSlider = document.querySelector('.testimonial-slider');
+  if (!testimonialSlider) return;
+  
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const prevBtn = document.querySelector('.prev-testimonial');
+  const nextBtn = document.querySelector('.next-testimonial');
+  
+  // Hide all slides except the first one
+  for (let i = 1; i < slides.length; i++) {
+    slides[i].style.display = 'none';
+  }
+  
+  // Show the first slide
+  slides[0].style.opacity = 1;
+  
+  // Show the specified slide
+  function showSlide(index) {
+    // Hide all slides
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';
+      slides[i].style.opacity = 0;
+    }
+    
+    // Show the selected slide
+    slides[index].style.display = 'block';
+    
+    // Trigger animation
+    setTimeout(() => {
+      slides[index].style.opacity = 1;
+    }, 10);
+  }
+  
+  // Previous slide
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+  }
+  
+  // Next slide
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+  }
+  
+  // Auto-advance slides every 5 seconds
+  setInterval(function() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 5000);
 }
