@@ -850,7 +850,7 @@ footer .copyright {
 }
 
 /* Back to Top Button */
-.back-to-top {
+#back-to-top, .back-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -872,15 +872,19 @@ footer .copyright {
   z-index: 1000;
 }
 
-.back-to-top.show {
+#back-to-top.show, .back-to-top.show {
   opacity: 1;
   visibility: visible;
 }
 
-.back-to-top:hover {
-  background-color: var(--accent);
+#back-to-top:hover, .back-to-top:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode #back-to-top, body.dark-mode .back-to-top {
+  background: linear-gradient(135deg, #3b82f6 0%, #a78bfa 100%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive Adjustments */

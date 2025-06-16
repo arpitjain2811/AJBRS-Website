@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initAnimatedCounters();
   initSmoothScroll();
   initDarkMode();
-  initBackToTop();
   initHoverEffects();
   initTimelineAnimation();
   initPublicationFilter();
@@ -14,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initMobileNavigation();
   initAccessibility();
 });
+
 
 // Animated Statistics Counter with Intersection Observer
 function initAnimatedCounters() {
@@ -144,44 +144,6 @@ function initDarkMode() {
   });
 }
 
-// Improved Back to Top Button
-function initBackToTop() {
-  // Create back to top button if it doesn't exist
-  if (!document.getElementById('back-to-top')) {
-    const backToTopBtn = document.createElement('button');
-    backToTopBtn.id = 'back-to-top';
-    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTopBtn.setAttribute('aria-label', 'Back to Top');
-    backToTopBtn.classList.add('back-to-top');
-    
-    document.body.appendChild(backToTopBtn);
-  }
-  
-  const backToTopBtn = document.getElementById('back-to-top');
-  
-  // Show/hide button based on scroll position with throttling
-  let lastScrollTime = 0;
-  window.addEventListener('scroll', () => {
-    const now = Date.now();
-    if (now - lastScrollTime > 100) { // Throttle to every 100ms
-      lastScrollTime = now;
-      
-      if (window.pageYOffset > 300) {
-        backToTopBtn.classList.add('show');
-      } else {
-        backToTopBtn.classList.remove('show');
-      }
-    }
-  });
-  
-  // Smooth scroll to top on click
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
 
 // Enhanced Hover Effects
 function initHoverEffects() {
