@@ -8,6 +8,15 @@ _site
 Thumbs.db
 ehthumbs.db
 
+# IDE
+.vscode/
+.idea/
+
+# logs and temp files
+*.log
+*.tmp
+*~
+
 Gemfile.lock
 
 beautiful-jekyll-theme-*.gem

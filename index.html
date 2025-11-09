@@ -3,7 +3,7 @@ layout: page
 title: AJBRS
 subtitle: Arpit Jain Best Researcher Scholarship
 cover-img: /assets/img/cover.jpg
-js: ["/assets/js/modern-interactions.js"]
+js: ["/assets/js/modern-interactions.js", "/assets/js/stats-calculator-simple.js"]
 ---
 
 <section class="about-section animate-on-scroll">
@@ -24,19 +24,19 @@ js: ["/assets/js/modern-interactions.js"]
     <div class="stats-container stagger-children">
         <!-- First Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">{{ site.data.stats.scholarships_granted_formatted }}</h2>
+            <h2 class="stat-number" data-stat="scholarships">Loading...</h2>
             <p class="stat-description">granted in scholarships since inception</p>
         </div>
 
         <!-- Second Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">{{ site.data.stats.recipients_count }}</h2>
+            <h2 class="stat-number" data-stat="recipients">Loading...</h2>
             <p class="stat-description">recipients so far</p>
         </div>
 
         <!-- Third Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">{{ site.data.stats.publications_count }}</h2>
+            <h2 class="stat-number" data-stat="publications">Loading...</h2>
             <p class="stat-description">research papers published</p>
         </div>
     </div>
