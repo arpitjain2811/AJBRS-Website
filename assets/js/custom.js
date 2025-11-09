@@ -3,7 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all functionality
-  initAnimatedCounters();
+  // initAnimatedCounters(); // REMOVED: Duplicate counter - using modern-interactions.js instead
   initSmoothScroll();
   initDarkMode();
   initHoverEffects();
@@ -15,50 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Animated Statistics Counter with Intersection Observer
-function initAnimatedCounters() {
-  const statNumbers = document.querySelectorAll('.stat-number');
-  
-  if (statNumbers.length === 0) return;
-  
-  const options = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.2
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const target = entry.target;
-        const countTo = parseInt(target.innerText.replace(/[^\d]/g, ''));
-        let count = 0;
-        const duration = 2000; // 2 seconds
-        const interval = duration / countTo;
-        
-        const counter = setInterval(() => {
-          count++;
-          // If the stat has a currency symbol, preserve it
-          if (target.innerText.includes('₹')) {
-            target.innerText = '₹' + count + 'K';
-          } else {
-            target.innerText = count;
-          }
-          
-          if (count >= countTo) {
-            clearInterval(counter);
-          }
-        }, interval);
-        
-        observer.unobserve(target);
-      }
-    });
-  }, options);
-  
-  statNumbers.forEach(stat => {
-    observer.observe(stat);
-  });
-}
+// REMOVED: Duplicate animated counter function
+// Using modern-interactions.js counter instead to avoid conflicts
 
 // Enhanced Smooth Scrolling for Anchor Links
 function initSmoothScroll() {

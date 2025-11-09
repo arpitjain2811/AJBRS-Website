@@ -1,13 +1,14 @@
 ---
-layout: home
+layout: page
 title: AJBRS
 subtitle: Arpit Jain Best Researcher Scholarship
 cover-img: /assets/img/cover.jpg
+js: ["/assets/js/modern-interactions.js"]
 ---
 
-<section class="about-section">
+<section class="about-section animate-on-scroll">
     <h1 class="section-title">About the Scholarship</h1>
-    
+
     <div class="about-content">
         <p>The Arpit Jain Best Researcher Scholarship (AJBRS) is a prestigious research award offered by the Department of Information & Communication Technology (ICT) at Manipal Institute of Technology (MIT), Karnataka, India. The scholarship was established in 2023 with an aim to foster a culture of academic excellence and innovation. The program specifically targets undergraduate and postgraduate students who demonstrate exceptional research capabilities through their published work in reputable academic venues.</p>
         
@@ -17,34 +18,34 @@ cover-img: /assets/img/cover.jpg
     </div>
 </section>
 
-<section class="stats-section">
+<section class="stats-section animate-on-scroll">
     <h2 class="section-title">Scholarship Impact</h2>
     
-    <div class="stats-container">
+    <div class="stats-container stagger-children">
         <!-- First Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">₹40K</h2>
+            <h2 class="stat-number">{{ site.data.stats.scholarships_granted_formatted }}</h2>
             <p class="stat-description">granted in scholarships since inception</p>
         </div>
 
         <!-- Second Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">7</h2>
+            <h2 class="stat-number">{{ site.data.stats.recipients_count }}</h2>
             <p class="stat-description">recipients so far</p>
         </div>
 
         <!-- Third Stat -->
         <div class="stat-box">
-            <h2 class="stat-number">5</h2>
+            <h2 class="stat-number">{{ site.data.stats.publications_count }}</h2>
             <p class="stat-description">research papers published</p>
         </div>
     </div>
 </section>
 
-<section class="features-section">
+<section class="features-section animate-on-scroll">
     <h2 class="section-title">Key Features</h2>
     
-    <div class="features-container">
+    <div class="features-container stagger-children">
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fas fa-award"></i>
@@ -79,7 +80,7 @@ cover-img: /assets/img/cover.jpg
     </div>
 </section>
 
-<section class="cta-section">
+<section class="cta-section animate-on-scroll">
     <div class="cta-container">
         <h2>Ready to Apply?</h2>
         <p>If you're a student at MIT's ICT Department with published research, you may be eligible for the AJBRS.</p>
