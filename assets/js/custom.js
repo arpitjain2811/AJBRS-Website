@@ -67,37 +67,93 @@ function initDarkMode() {
   const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   const savedMode = localStorage.getItem('darkMode');
   
-  // Apply dark mode if saved or preferred by system
-  if (savedMode === 'dark' || (savedMode === null && prefersDarkMode)) {
+  // Force navbar link visibility function
+  function forceNavbarVisibility() {
+    const navLinks = document.querySelectorAll('.navbar .nav-link, .navbar-custom .nav-link');
+    navLinks.forEach(link => {
+      if (prefersDarkMode && savedMode !== 'light') {
+        // Force white color for dark mode
+        link.style.setProperty('color', '#ffffff', 'important');
+        link.style.setProperty('opacity', '1', 'important');
+        link.style.setProperty('visibility', 'visible', 'important');
+        link.style.setProperty('text-shadow', '0 0 1px rgba(255, 255, 255, 0.5)', 'important');
+      }
+    });
+  }
+  
+  // Initialize mode based on preference hierarchy:
+  // 1. Saved user preference (highest priority)
+  // 2. System preference (if no saved preference)
+  // 3. Light mode default (if no system preference)
+  
+  if (savedMode === 'dark') {
+    // User explicitly chose dark mode
+    document.body.classList.remove('light-mode');
     document.body.classList.add('dark-mode');
     darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+  } else if (savedMode === 'light') {
+    // User explicitly chose light mode
+    document.body.classList.remove('dark-mode');
+    document.body.classList.add('light-mode');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+  } else {
+    // No saved preference - respect system preference
+    document.body.classList.remove('dark-mode', 'light-mode');
+    if (prefersDarkMode) {
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
+    } else {
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
+    }
   }
+  
+  // Force navbar visibility after initial setup
+  setTimeout(forceNavbarVisibility, 100);
   
   // Toggle dark mode on click
   darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    const hasLightMode = document.body.classList.contains('light-mode');
+    const hasDarkMode = document.body.classList.contains('dark-mode');
     
-    if (document.body.classList.contains('dark-mode')) {
+    if (hasLightMode || (!hasDarkMode && !prefersDarkMode)) {
+      // Switch to dark mode
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
       localStorage.setItem('darkMode', 'dark');
       darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
       darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
     } else {
+      // Switch to light mode
+      document.body.classList.remove('dark-mode');
+      document.body.classList.add('light-mode');
       localStorage.setItem('darkMode', 'light');
       darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
       darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
     }
+    
+    // Force navbar visibility after mode change
+    setTimeout(forceNavbarVisibility, 50);
   });
   
-  // Listen for system preference changes
+  // Listen for system preference changes (only if no manual override)
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    if (localStorage.getItem('darkMode') === null) {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === null) {
+      // Only respond to system changes if user hasn't set a preference
+      document.body.classList.remove('dark-mode', 'light-mode');
       if (e.matches) {
-        document.body.classList.add('dark-mode');
         darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        darkModeToggle.setAttribute('aria-label', 'Switch to Light Mode');
       } else {
-        document.body.classList.remove('dark-mode');
         darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        darkModeToggle.setAttribute('aria-label', 'Switch to Dark Mode');
       }
+      
+      // Force navbar visibility after system preference change
+      setTimeout(forceNavbarVisibility, 50);
     }
   });
 }

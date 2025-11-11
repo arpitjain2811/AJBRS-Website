@@ -178,6 +178,13 @@
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Ensure above-the-fold content is visible immediately */
+.about-section,
+.stats-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .animate-on-scroll.animate {
   opacity: 1;
   transform: translateY(0);
@@ -315,11 +322,11 @@ section {
 
 /* Navigation Bar */
 .navbar-custom {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(248, 250, 252, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.3);
   padding: 1rem 0;
   transition: all 0.3s ease;
   position: relative;
@@ -332,9 +339,7 @@ section {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(248, 250, 252, 0.8) 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   z-index: -1;
 }
 
@@ -402,6 +407,59 @@ section {
   color: white !important;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+/* Nuclear option - Override everything for navbar links */
+@media (prefers-color-scheme: dark) {
+  /* All possible navbar link selectors */
+  body:not(.light-mode):not(.dark-mode) nav.navbar a.nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-custom a.nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-dark a.nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar .navbar-nav .nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-dark .navbar-nav .nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-custom .navbar-nav .nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-dark .navbar-nav .nav-item .nav-link {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    background-color: transparent !important;
+  }
+  
+  /* Hover states */
+  body:not(.light-mode):not(.dark-mode) nav.navbar a.nav-link:hover,
+  body:not(.light-mode):not(.dark-mode) .navbar-custom a.nav-link:hover,
+  body:not(.light-mode):not(.dark-mode) .navbar-dark a.nav-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(59, 130, 246, 0.2) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* Manual dark mode - Nuclear option */
+body.dark-mode nav.navbar a.nav-link,
+body.dark-mode .navbar-custom a.nav-link,
+body.dark-mode .navbar-dark a.nav-link,
+body.dark-mode .navbar .navbar-nav .nav-link,
+body.dark-mode .navbar-dark .navbar-nav .nav-link,
+body.dark-mode .navbar-custom .navbar-nav .nav-link,
+body.dark-mode .navbar-dark .navbar-nav .nav-item .nav-link {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5) !important;
+  background-color: transparent !important;
+}
+
+/* Manual dark mode hover states */
+body.dark-mode nav.navbar a.nav-link:hover,
+body.dark-mode .navbar-custom a.nav-link:hover,
+body.dark-mode .navbar-dark a.nav-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Avatar Container */
@@ -1057,107 +1115,310 @@ footer .copyright {
   opacity: 0.8;
 }
 
-/* Dark Mode Styles */
-.dark-mode {
-  background-color: var(--gray-900);
-  color: var(--gray-300);
+/* ========================================
+   COMPREHENSIVE COLOR SYSTEM
+   Light Mode + Dark Mode + System Preferences
+   ======================================== */
+
+/* Respect system preferences by default */
+html {
+  color-scheme: light dark;
 }
 
-.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
-  color: white;
+/* Default Light Mode Styles */
+body {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #334155;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark-mode .navbar-custom {
-  background-color: rgba(15, 23, 42, 0.95);
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+h1, h2, h3, h4, h5, h6, .section-title {
+  color: #0f172a;
 }
 
-.dark-mode .navbar-custom .navbar-brand,
-.dark-mode .navbar-custom .navbar-nav .nav-link {
-  color: white;
+p, li, .about-content p, .feature-card p {
+  color: #334155;
 }
 
-.dark-mode .navbar-custom .nav-link:hover {
+a {
+  color: #2563eb;
+}
+
+a:hover, a:focus {
+  color: #1d4ed8;
+}
+
+/* Navigation in light mode */
+.navbar-custom {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand {
+  color: #1e293b;
+}
+
+/* System Dark Mode - Default when user prefers dark and no manual override */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+  }
+
+  body:not(.light-mode):not(.dark-mode) h1, 
+  body:not(.light-mode):not(.dark-mode) h2, 
+  body:not(.light-mode):not(.dark-mode) h3, 
+  body:not(.light-mode):not(.dark-mode) h4, 
+  body:not(.light-mode):not(.dark-mode) h5, 
+  body:not(.light-mode):not(.dark-mode) h6,
+  body:not(.light-mode):not(.dark-mode) .section-title {
+    color: #ffffff;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) p,
+  body:not(.light-mode):not(.dark-mode) li,
+  body:not(.light-mode):not(.dark-mode) .about-content p,
+  body:not(.light-mode):not(.dark-mode) .feature-card p {
+    color: #cbd5e1;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) a {
+    color: #60a5fa;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) a:hover,
+  body:not(.light-mode):not(.dark-mode) a:focus {
+    color: #a78bfa;
+  }
+  
+  /* Force dark navbar background to match main page */
+  body:not(.light-mode):not(.dark-mode) .navbar-custom {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5) !important;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .navbar-custom::before {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .navbar-custom .nav-link,
+  body:not(.light-mode):not(.dark-mode) .navbar-custom .navbar-brand {
+    color: #ffffff !important;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .navbar-custom .nav-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(59, 130, 246, 0.2) !important;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .navbar-custom .nav-link:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #ffffff;
+  }
+}
+
+/* Manual Light Mode Override */
+body.light-mode {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  color: #334155 !important;
+}
+
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode h4, 
+body.light-mode h5, 
+body.light-mode h6,
+body.light-mode .section-title {
+  color: #0f172a !important;
+}
+
+body.light-mode p,
+body.light-mode li,
+body.light-mode .about-content p,
+body.light-mode .feature-card p {
+  color: #334155 !important;
+}
+
+body.light-mode a {
+  color: #2563eb !important;
+}
+
+body.light-mode a:hover,
+body.light-mode a:focus {
+  color: #1d4ed8 !important;
+}
+
+body.light-mode .navbar-custom {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.3) !important;
+}
+
+body.light-mode .navbar-custom::before {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+body.light-mode .navbar-custom .nav-link,
+body.light-mode .navbar-custom .navbar-brand {
+  color: #1e293b !important;
+}
+
+/* Manual Dark Mode Override */
+body.dark-mode {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6,
+body.dark-mode .section-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode .about-content p,
+body.dark-mode .feature-card p {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode a {
+  color: #60a5fa !important;
+}
+
+body.dark-mode a:hover,
+body.dark-mode a:focus {
+  color: #a78bfa !important;
+}
+
+/* Force dark navbar background in manual dark mode to match main page */
+body.dark-mode .navbar-custom {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2) !important;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.5) !important;
+}
+
+body.dark-mode .navbar-custom::before {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+body.dark-mode .navbar-custom .navbar-brand,
+body.dark-mode .navbar-custom .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+body.dark-mode .navbar-custom .nav-link:hover {
   background-color: rgba(59, 130, 246, 0.2);
 }
 
-.dark-mode a {
-  color: var(--primary-light);
+/* Sections in dark mode */
+body.dark-mode .stats-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
-.dark-mode a:hover,
-.dark-mode a:focus {
-  color: var(--accent);
-}
-
-.dark-mode .stats-section {
-  background-color: var(--gray-800);
-}
-
-.dark-mode .stats-container {
-  background-color: var(--gray-800);
+body.dark-mode .stats-container {
+  background-color: #1e293b;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.dark-mode .stat-box {
-  background-color: var(--gray-800);
+body.dark-mode .stat-box {
+  background-color: #334155;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.dark-mode .stat-description {
-  color: var(--gray-400);
+body.dark-mode .stat-description {
+  color: #94a3b8;
 }
 
-.dark-mode .feature-card {
-  background-color: var(--gray-800);
+body.dark-mode .feature-card {
+  background-color: #334155;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.dark-mode .feature-card p {
-  color: var(--gray-400);
+body.dark-mode .feature-card h3 {
+  color: #ffffff !important;
 }
 
-.dark-mode .about-content p {
-  color: var(--gray-400);
+/* System dark mode styles for sections */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) .stats-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .stats-container {
+    background-color: #1e293b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .stat-box {
+    background-color: #334155;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .stat-description {
+    color: #94a3b8;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .feature-card {
+    background-color: #334155;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .feature-card h3 {
+    color: #ffffff !important;
+  }
 }
 
 .dark-mode .timeline-content {
-  background-color: var(--gray-800);
+  background-color: #1e293b;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Publications and tables in dark mode */
 .dark-mode .publications-filter {
-  background-color: var(--gray-800);
+  background-color: #1e293b;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .dark-mode .publication-search {
-  background-color: var(--gray-700);
-  border-color: var(--gray-600);
-  color: white;
+  background-color: #334155;
+  border-color: #475569;
+  color: #ffffff;
 }
 
 .dark-mode .publication-search:focus {
-  background-color: var(--gray-800);
-  border-color: var(--primary-light);
+  background-color: #1e293b;
+  border-color: #60a5fa;
 }
 
 .dark-mode .filter-buttons button {
-  background-color: var(--gray-700);
-  border-color: var(--gray-600);
-  color: var(--gray-300);
+  background-color: #334155;
+  border-color: #475569;
+  color: #cbd5e1;
 }
 
 .dark-mode table tr:nth-child(even) {
-  background-color: var(--gray-800);
+  background-color: #1e293b;
 }
 
 .dark-mode table tr:nth-child(odd) {
-  background-color: var(--gray-700);
+  background-color: #334155;
 }
 
 .dark-mode table tr td {
-  border-bottom-color: var(--gray-600);
+  border-bottom-color: #475569;
+  color: #cbd5e1 !important;
 }
 
 .dark-mode table tr:hover td {
@@ -1165,14 +1426,14 @@ footer .copyright {
 }
 
 .dark-mode blockquote {
-  background-color: var(--gray-800);
+  background-color: #1e293b;
 }
 
-/* Dark Mode Toggle */
+/* Dark Mode Toggle Button */
 .dark-mode-toggle {
   background: none;
   border: none;
-  color: var(--gray-700);
+  color: #334155;
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0.5rem;
@@ -1188,15 +1449,29 @@ footer .copyright {
 
 .dark-mode-toggle:hover {
   background-color: rgba(0, 0, 0, 0.1);
-  color: var(--primary);
+  color: #2563eb;
 }
 
-.dark-mode .dark-mode-toggle {
-  color: white;
+/* Dark mode toggle in system dark mode */
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) .dark-mode-toggle {
+    color: #ffffff;
+  }
+  
+  body:not(.light-mode):not(.dark-mode) .dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #60a5fa;
+  }
 }
 
-.dark-mode .dark-mode-toggle:hover {
+/* Dark mode toggle in manual dark mode */
+body.dark-mode .dark-mode-toggle {
+  color: #ffffff;
+}
+
+body.dark-mode .dark-mode-toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  color: #60a5fa;
 }
 
 /* Back to Top Button */
