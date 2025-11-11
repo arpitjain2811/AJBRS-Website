@@ -44,26 +44,11 @@ function initScrollAnimations() {
     });
 }
 
-// Count up animation for statistics - TEMPORARILY DISABLED FOR DEBUGGING
+// Count up animation for statistics - DISABLED (Using enhanced version in stats-calculator-simple.js)
 function initCountUpAnimations() {
-    // Disabled to check if animation is causing incorrect numbers
-    console.log('Counter animation disabled for debugging');
+    // Disabled: Using enhanced counter animation in stats-calculator-simple.js
+    console.log('Counter animation handled by stats-calculator-simple.js');
     return;
-    
-    const countElements = document.querySelectorAll('.stat-number');
-    
-    const countObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                entry.target.classList.add('counted');
-                animateCount(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    countElements.forEach((el) => {
-        countObserver.observe(el);
-    });
 }
 
 function animateCount(element) {
