@@ -382,7 +382,10 @@ function initPublicationFilter() {
 
     // Show/hide publications based on filter
     if (filter === 'all') {
-      content.querySelectorAll('h2, li').forEach(el => {
+      // Reset every element the year filter may have hidden — including the <ul>
+      // wrappers (the year filter hides the <ul>, not just the <li>, so resetting
+      // only h2/li would leave the lists' <ul> parents display:none).
+      content.querySelectorAll('h2, ul, li').forEach(el => {
         el.style.display = '';
       });
     } else {

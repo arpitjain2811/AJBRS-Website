@@ -1429,6 +1429,57 @@ body.dark-mode .feature-card h3 {
   body:not(.light-mode):not(.dark-mode) .feature-card h3 {
     color: #ffffff !important;
   }
+
+  /* Components below were previously dark only under the manual `.dark-mode`
+     class, so they stayed light when the OS was in dark mode without toggling.
+     These mirror the manual rules for the system-preference case. */
+  body:not(.light-mode):not(.dark-mode) .timeline-content {
+    background-color: #1e293b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  body:not(.light-mode):not(.dark-mode) .publications-filter {
+    background-color: #1e293b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  body:not(.light-mode):not(.dark-mode) .publication-search {
+    background-color: #334155;
+    border-color: #475569;
+    color: #ffffff;
+  }
+
+  body:not(.light-mode):not(.dark-mode) .publication-search:focus {
+    background-color: #1e293b;
+    border-color: #60a5fa;
+  }
+
+  body:not(.light-mode):not(.dark-mode) .filter-buttons button {
+    background-color: #334155;
+    border-color: #475569;
+    color: #cbd5e1;
+  }
+
+  body:not(.light-mode):not(.dark-mode) table tr:nth-child(even) {
+    background-color: #1e293b;
+  }
+
+  body:not(.light-mode):not(.dark-mode) table tr:nth-child(odd) {
+    background-color: #334155;
+  }
+
+  body:not(.light-mode):not(.dark-mode) table tr td {
+    border-bottom-color: #475569;
+    color: #cbd5e1 !important;
+  }
+
+  body:not(.light-mode):not(.dark-mode) table tr:hover td {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  body:not(.light-mode):not(.dark-mode) blockquote {
+    background-color: #1e293b;
+  }
 }
 
 .dark-mode .timeline-content {
