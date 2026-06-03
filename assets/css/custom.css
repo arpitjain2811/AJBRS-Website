@@ -1531,51 +1531,6 @@ body.dark-mode .feature-card h3 {
   background-color: #1e293b;
 }
 
-/* Dark Mode Toggle Button */
-.dark-mode-toggle {
-  background: none;
-  border: none;
-  color: #334155;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-left: 1rem;
-  transition: all 0.3s ease;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dark-mode-toggle:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #2563eb;
-}
-
-/* Dark mode toggle in system dark mode */
-@media (prefers-color-scheme: dark) {
-  body:not(.light-mode):not(.dark-mode) .dark-mode-toggle {
-    color: #ffffff;
-  }
-  
-  body:not(.light-mode):not(.dark-mode) .dark-mode-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #60a5fa;
-  }
-}
-
-/* Dark mode toggle in manual dark mode */
-body.dark-mode .dark-mode-toggle {
-  color: #ffffff;
-}
-
-body.dark-mode .dark-mode-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #60a5fa;
-}
-
 /* Back to Top Button */
 #back-to-top, .back-to-top {
   position: fixed;
