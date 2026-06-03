@@ -1614,6 +1614,14 @@ body.dark-mode #back-to-top, body.dark-mode .back-to-top {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) #back-to-top,
+  body:not(.light-mode):not(.dark-mode) .back-to-top {
+    background: linear-gradient(135deg, #3b82f6 0%, #a78bfa 100%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1200px) {
   .container, .container-md, .container-fluid {

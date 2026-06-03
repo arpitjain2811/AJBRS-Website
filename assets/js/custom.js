@@ -11,7 +11,24 @@ document.addEventListener('DOMContentLoaded', function() {
   initLazyLoading();
   initMobileNavigation();
   initAccessibility();
+  // Run last so it also covers links cloned into the recipients timeline / inserted
+  // into the publications filter above.
+  initExternalLinks();
 });
+
+// Open external links in a new tab (with rel=noopener for security). Internal
+// links and on-page anchors keep their default same-tab behaviour.
+function initExternalLinks() {
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    // link.hostname is resolved against the current document
+    if (link.hostname && link.hostname !== window.location.hostname) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}
 
 
 // REMOVED: Duplicate animated counter function
@@ -341,12 +358,11 @@ function initPublicationFilter() {
         const text = pub.textContent.toLowerCase();
         if (text.includes(searchTerm)) {
           pub.style.display = '';
-          // Highlight matching text
+          // Highlight matching text (or clear highlights if the box is empty)
           if (searchTerm.length > 0) {
             highlightText(pub, searchTerm);
           } else {
-            // Remove highlights if search is cleared
-            pub.innerHTML = pub.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
+            clearHighlights(pub);
           }
         } else {
           pub.style.display = 'none';
@@ -375,10 +391,7 @@ function initPublicationFilter() {
     searchInput.value = '';
 
     // Remove any existing highlights
-    content.querySelectorAll('mark.search-highlight').forEach(mark => {
-      const parent = mark.parentNode;
-      parent.innerHTML = parent.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
-    });
+    clearHighlights(content);
 
     // Show/hide publications based on filter
     if (filter === 'all') {
@@ -403,16 +416,67 @@ function initPublicationFilter() {
     }
   }
   
-  // Helper function to highlight search terms
+  // Remove highlight <mark>s by unwrapping them back into plain text. Done via the
+  // DOM (not an innerHTML regex) so element attributes — e.g. link href URLs — are
+  // never touched.
+  function clearHighlights(root) {
+    root.querySelectorAll('mark.search-highlight').forEach(mark => {
+      mark.replaceWith(document.createTextNode(mark.textContent));
+    });
+    root.normalize(); // merge the split text nodes back together
+  }
+
+  // Highlight search matches by walking TEXT NODES only and wrapping matches in
+  // <mark>. Critically, this never edits the HTML string, so it cannot inject tags
+  // into href="..." attributes (the old innerHTML.replace corrupted links when the
+  // query appeared inside a URL, e.g. searching "ieee").
   function highlightText(element, searchTerm) {
-    // Remove existing highlights first
-    const content = element.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
+    clearHighlights(element);
+    if (!searchTerm) return;
 
-    // Escape special regex characters to prevent injection
     const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(${escapedTerm})`, 'gi');
+    const regex = new RegExp(escapedTerm, 'gi');
 
-    element.innerHTML = content.replace(regex, '<mark class="search-highlight">$1</mark>');
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p = node.parentNode;
+        if (p && p.classList && p.classList.contains('search-highlight')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    const textNodes = [];
+    let node;
+    while ((node = walker.nextNode())) textNodes.push(node);
+
+    textNodes.forEach(textNode => {
+      const text = textNode.nodeValue;
+      regex.lastIndex = 0;
+      if (!regex.test(text)) return;
+      regex.lastIndex = 0;
+
+      const frag = document.createDocumentFragment();
+      let lastIndex = 0;
+      let match;
+      while ((match = regex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          frag.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        }
+        const mark = document.createElement('mark');
+        mark.className = 'search-highlight';
+        mark.textContent = match[0];
+        frag.appendChild(mark);
+        lastIndex = match.index + match[0].length;
+        if (match[0].length === 0) regex.lastIndex++; // guard against zero-width loops
+      }
+      if (lastIndex < text.length) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+      }
+      textNode.parentNode.replaceChild(frag, textNode);
+    });
   }
 }
 
