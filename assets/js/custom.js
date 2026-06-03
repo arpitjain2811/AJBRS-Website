@@ -3,7 +3,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all functionality
-  // initAnimatedCounters(); // REMOVED: Duplicate counter - using modern-interactions.js instead
   initSmoothScroll();
   initDarkMode();
   initHoverEffects();
@@ -53,11 +52,17 @@ function initDarkMode() {
     darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     darkModeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
     darkModeToggle.classList.add('dark-mode-toggle');
-    
-    // Add to the navbar
-    const navbar = document.querySelector('.navbar-custom .container-fluid');
-    if (navbar) {
-      navbar.appendChild(darkModeToggle);
+
+    // Add to the navbar nav list as a proper nav item
+    const navList = document.querySelector('.navbar-custom .navbar-nav');
+    if (navList) {
+      const li = document.createElement('li');
+      li.className = 'nav-item';
+      li.appendChild(darkModeToggle);
+      navList.appendChild(li);
+    } else {
+      const navEl = document.querySelector('.navbar-custom');
+      if (navEl) navEl.appendChild(darkModeToggle);
     }
   }
   
@@ -69,14 +74,21 @@ function initDarkMode() {
   
   // Force navbar link visibility function
   function forceNavbarVisibility() {
+    const currentSavedMode = localStorage.getItem('darkMode');
+    const isDark = currentSavedMode === 'dark' ||
+      (currentSavedMode === null && prefersDarkMode);
     const navLinks = document.querySelectorAll('.navbar .nav-link, .navbar-custom .nav-link');
     navLinks.forEach(link => {
-      if (prefersDarkMode && savedMode !== 'light') {
-        // Force white color for dark mode
+      if (isDark) {
         link.style.setProperty('color', '#ffffff', 'important');
         link.style.setProperty('opacity', '1', 'important');
         link.style.setProperty('visibility', 'visible', 'important');
         link.style.setProperty('text-shadow', '0 0 1px rgba(255, 255, 255, 0.5)', 'important');
+      } else {
+        link.style.removeProperty('color');
+        link.style.removeProperty('opacity');
+        link.style.removeProperty('visibility');
+        link.style.removeProperty('text-shadow');
       }
     });
   }
@@ -190,51 +202,53 @@ function initHoverEffects() {
 function initTimelineAnimation() {
   const recipientsPage = document.querySelector('body.page-past_recipients');
   if (!recipientsPage) return;
-  
+
+  // The page content lives inside `<main class="container-md"><div class="row">
+  // <div class="col-...">`. Scope ALL queries to this container so we never pick
+  // up the navbar's or footer's <ul>/<h2> elements.
+  const content = document.querySelector('main .row > div') ||
+                  document.querySelector('main');
+  if (!content) return;
+
   // Convert the existing content to a timeline if not already converted
-  if (!document.querySelector('.timeline-container')) {
-    const headings = document.querySelectorAll('h2');
-    const lists = document.querySelectorAll('ul');
-    
+  if (!content.querySelector('.timeline-container')) {
+    const headings = content.querySelectorAll('h2');
+    const lists = content.querySelectorAll('ul');
+
     if (headings.length === 0 || lists.length === 0) return;
-    
+
     // Create timeline container
     const timelineContainer = document.createElement('div');
     timelineContainer.classList.add('timeline-container');
-    
+
     // For each year, create a timeline entry
     for (let i = 0; i < headings.length; i++) {
       const year = headings[i].textContent;
       const recipients = lists[i];
-      
+      if (!recipients) continue;
+
       const timelineEntry = document.createElement('div');
       timelineEntry.classList.add('timeline-entry');
-      
+
       const timelineYear = document.createElement('div');
       timelineYear.classList.add('timeline-year');
       timelineYear.textContent = year;
-      
+
       const timelineContent = document.createElement('div');
       timelineContent.classList.add('timeline-content');
       timelineContent.appendChild(recipients.cloneNode(true));
-      
+
       timelineEntry.appendChild(timelineYear);
       timelineEntry.appendChild(timelineContent);
       timelineContainer.appendChild(timelineEntry);
     }
-    
-    // Replace the original content with the timeline
-    const content = document.querySelector('.container .row .col-xl-8');
-    if (content) {
-      // Remove original headings and lists
-      headings.forEach(heading => heading.remove());
-      lists.forEach(list => list.remove());
-      
-      // Add the timeline
-      content.appendChild(timelineContainer);
-    }
+
+    // Remove the original headings and lists, then add the timeline
+    headings.forEach(heading => heading.remove());
+    lists.forEach(list => list.remove());
+    content.appendChild(timelineContainer);
   }
-  
+
   // Add animation with Intersection Observer
   const timelineEntries = document.querySelectorAll('.timeline-entry');
   
@@ -262,35 +276,41 @@ function initTimelineAnimation() {
 function initPublicationFilter() {
   const publicationsPage = document.querySelector('body.page-publications');
   if (!publicationsPage) return;
-  
+
+  // Scope every query to the content column so the navbar/footer <ul>/<li>/<h2>
+  // are never treated as publications (see note in initTimelineAnimation).
+  const content = document.querySelector('main .row > div') ||
+                  document.querySelector('main');
+  if (!content) return;
+
   // Create filter container if it doesn't exist
-  if (!document.querySelector('.publications-filter')) {
+  if (!content.querySelector('.publications-filter')) {
     const filterContainer = document.createElement('div');
     filterContainer.classList.add('publications-filter');
-    
+
     // Create search input
     const searchInput = document.createElement('input');
     searchInput.type = 'text';
     searchInput.placeholder = 'Search publications...';
     searchInput.classList.add('publication-search');
-    
+
     // Create filter buttons
     const filterButtons = document.createElement('div');
     filterButtons.classList.add('filter-buttons');
-    
-    // Get all years from headings
+
+    // Get all years from headings (content-scoped)
     const years = [];
-    document.querySelectorAll('h2').forEach(heading => {
+    content.querySelectorAll('h2').forEach(heading => {
       years.push(heading.textContent.trim());
     });
-    
+
     // Add "All" button
     const allButton = document.createElement('button');
     allButton.textContent = 'All';
     allButton.classList.add('active');
     allButton.addEventListener('click', () => filterPublications('all'));
     filterButtons.appendChild(allButton);
-    
+
     // Add year buttons
     years.forEach(year => {
       const button = document.createElement('button');
@@ -298,28 +318,25 @@ function initPublicationFilter() {
       button.addEventListener('click', () => filterPublications(year));
       filterButtons.appendChild(button);
     });
-    
+
     // Add search and filter to container
     filterContainer.appendChild(searchInput);
     filterContainer.appendChild(filterButtons);
-    
-    // Add filter container to page
-    const content = document.querySelector('.container .row .col-xl-8');
-    if (content) {
-      content.insertBefore(filterContainer, content.firstChild);
-    }
+
+    content.insertBefore(filterContainer, content.firstChild);
   }
-  
-  const searchInput = document.querySelector('.publication-search');
-  
+
+  const searchInput = content.querySelector('.publication-search');
+  if (!searchInput) return;
+
   // Enhanced search functionality with debounce
   let searchTimeout;
   searchInput.addEventListener('input', () => {
     clearTimeout(searchTimeout);
     searchTimeout = setTimeout(() => {
       const searchTerm = searchInput.value.toLowerCase();
-      const publications = document.querySelectorAll('li');
-      
+      const publications = content.querySelectorAll('li');
+
       publications.forEach(pub => {
         const text = pub.textContent.toLowerCase();
         if (text.includes(searchTerm)) {
@@ -329,15 +346,15 @@ function initPublicationFilter() {
             highlightText(pub, searchTerm);
           } else {
             // Remove highlights if search is cleared
-            pub.innerHTML = pub.innerHTML.replace(/<mark class="search-highlight">|<\/mark>/g, '');
+            pub.innerHTML = pub.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
           }
         } else {
           pub.style.display = 'none';
         }
       });
-      
+
       // Show/hide headings based on visible publications
-      document.querySelectorAll('h2').forEach(heading => {
+      content.querySelectorAll('h2').forEach(heading => {
         const nextElement = heading.nextElementSibling;
         if (nextElement && nextElement.tagName === 'UL') {
           const visibleItems = nextElement.querySelectorAll('li:not([style*="display: none"])');
@@ -346,33 +363,33 @@ function initPublicationFilter() {
       });
     }, 300); // Debounce for 300ms
   });
-  
+
   // Filter functionality
   function filterPublications(filter) {
     // Update active button
-    document.querySelectorAll('.filter-buttons button').forEach(btn => {
+    content.querySelectorAll('.filter-buttons button').forEach(btn => {
       btn.classList.toggle('active', btn.textContent === filter || (filter === 'all' && btn.textContent === 'All'));
     });
-    
+
     // Clear search when filtering
     searchInput.value = '';
-    
+
     // Remove any existing highlights
-    document.querySelectorAll('mark.search-highlight').forEach(mark => {
+    content.querySelectorAll('mark.search-highlight').forEach(mark => {
       const parent = mark.parentNode;
-      parent.innerHTML = parent.innerHTML.replace(/<mark class="search-highlight">|<\/mark>/g, '');
+      parent.innerHTML = parent.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
     });
-    
+
     // Show/hide publications based on filter
     if (filter === 'all') {
-      document.querySelectorAll('h2, li').forEach(el => {
+      content.querySelectorAll('h2, li').forEach(el => {
         el.style.display = '';
       });
     } else {
-      document.querySelectorAll('h2').forEach(heading => {
+      content.querySelectorAll('h2').forEach(heading => {
         const isVisible = heading.textContent.trim() === filter;
         heading.style.display = isVisible ? '' : 'none';
-        
+
         // Show/hide publications under this heading
         let nextElement = heading.nextElementSibling;
         while (nextElement && nextElement.tagName !== 'H2') {
@@ -386,12 +403,12 @@ function initPublicationFilter() {
   // Helper function to highlight search terms
   function highlightText(element, searchTerm) {
     // Remove existing highlights first
-    const content = element.innerHTML.replace(/<mark class="search-highlight">|<\/mark>/g, '');
-    
-    // Create a regex that ignores case
-    const regex = new RegExp(`(${searchTerm})`, 'gi');
-    
-    // Replace with highlighted version
+    const content = element.innerHTML.replace(/<mark class="search-highlight">(.*?)<\/mark>/gi, '$1');
+
+    // Escape special regex characters to prevent injection
+    const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedTerm})`, 'gi');
+
     element.innerHTML = content.replace(regex, '<mark class="search-highlight">$1</mark>');
   }
 }
@@ -436,64 +453,36 @@ function initLazyLoading() {
 }
 
 // Mobile Navigation Enhancements
+// NOTE: Let Bootstrap own the show/hide of the collapse. We only add UX niceties
+// (close on outside click, close after choosing a link). Earlier versions injected
+// a global `.navbar-collapse { opacity: 0 }` rule which hid the entire navbar on
+// desktop, because an expanded (navbar-expand-xl) menu never receives `.show`.
 function initMobileNavigation() {
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarCollapse = document.querySelector('.navbar-collapse');
-  
+
   if (!navbarToggler || !navbarCollapse) return;
-  
-  // Close mobile menu when clicking outside
+
+  // Only collapse if the toggler is actually visible (i.e. we're at a mobile width)
+  const togglerVisible = () => navbarToggler.offsetParent !== null;
+
+  // Close mobile menu when clicking outside of it
   document.addEventListener('click', (e) => {
-    if (navbarCollapse.classList.contains('show') && 
-        !navbarCollapse.contains(e.target) && 
+    if (navbarCollapse.classList.contains('show') &&
+        !navbarCollapse.contains(e.target) &&
         !navbarToggler.contains(e.target)) {
       navbarToggler.click();
     }
   });
-  
-  // Close mobile menu when clicking a link
-  const navLinks = navbarCollapse.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
+
+  // Close mobile menu after a navigation link is chosen
+  navbarCollapse.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      if (navbarCollapse.classList.contains('show')) {
+      if (togglerVisible() && navbarCollapse.classList.contains('show')) {
         navbarToggler.click();
       }
     });
   });
-  
-  // Add animation to mobile menu
-  navbarToggler.addEventListener('click', () => {
-    if (!navbarCollapse.classList.contains('show')) {
-      // Opening menu
-      navbarCollapse.style.display = 'block';
-      setTimeout(() => {
-        navbarCollapse.style.opacity = '1';
-        navbarCollapse.style.transform = 'translateY(0)';
-      }, 10);
-    } else {
-      // Closing menu
-      navbarCollapse.style.opacity = '0';
-      navbarCollapse.style.transform = 'translateY(-10px)';
-      setTimeout(() => {
-        navbarCollapse.style.display = '';
-      }, 300);
-    }
-  });
-  
-  // Add transition styles
-  const style = document.createElement('style');
-  style.textContent = `
-    .navbar-collapse {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    .navbar-collapse.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  `;
-  document.head.appendChild(style);
 }
 
 // Accessibility Improvements
@@ -530,9 +519,11 @@ function initAccessibility() {
     mainContent.id = 'content';
   }
   
-  // Ensure all interactive elements are keyboard accessible
-  document.querySelectorAll('a, button, input, select, textarea').forEach(el => {
-    if (!el.getAttribute('tabindex') && el.style.display !== 'none' && el.style.visibility !== 'hidden') {
+  // Links, buttons, and form fields are natively keyboard-focusable, so we do NOT
+  // force tabindex on them (that only disrupts the natural tab order). We only
+  // promote genuinely non-focusable interactive elements that opt in via [role].
+  document.querySelectorAll('[role="button"]:not(a):not(button), [role="link"]:not(a)').forEach(el => {
+    if (!el.hasAttribute('tabindex')) {
       el.setAttribute('tabindex', '0');
     }
   });

@@ -131,16 +131,19 @@
      */
     async function calculateStats() {
         try {
-            // Determine base URL - works for both local development and GitHub Pages
-            const isGitHubPages = window.location.hostname.includes('github.io');
-            const baseUrl = isGitHubPages 
-                ? window.location.origin + '/AJBRS-Website'  // GitHub Pages format
-                : window.location.origin;  // Local development
-            
+            // Resolve the target pages RELATIVE to the current page. Using
+            // document.baseURI guarantees the fetch stays on the exact same origin
+            // the user is browsing (no CORS), while still picking up whatever path
+            // prefix the site is served under (e.g. /AJBRS-Website/ on GitHub Pages,
+            // or a bare custom domain). This script only runs on the home page, so
+            // "past_recipients/" resolves to a sibling of the site root.
+            const recipientsUrl = new URL('past_recipients/', document.baseURI).href;
+            const publicationsUrl = new URL('publications/', document.baseURI).href;
+
             // Fetch both pages
             const [recipientsContent, publicationsContent] = await Promise.all([
-                fetchContent(`${baseUrl}/past_recipients/`),
-                fetchContent(`${baseUrl}/publications/`)
+                fetchContent(recipientsUrl),
+                fetchContent(publicationsUrl)
             ]);
 
             // Calculate stats

@@ -2,6 +2,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- Mark that JS is available BEFORE paint. Scroll-reveal animations only hide
+       content when this class is present, so the page stays visible without JS. -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Preconnect for faster font/CDN loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://stackpath.bootstrapcdn.com">
+
   {% capture pagetitle %}
     {%- if page.share-title -%}
       {{ page.share-title | strip_html | xml_escape }}

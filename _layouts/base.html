@@ -24,7 +24,12 @@ common-js:
 <!-- Beautiful Jekyll 6.0.1 | Copyright Dean Attali 2023 -->
 {% include head.html %}
 
-<body>
+{%- comment -%}
+  Derive a per-page slug (e.g. "publications", "past_recipients", "home") so that
+  page-specific JS (publication filter, recipients timeline) and CSS can target it.
+{%- endcomment -%}
+{%- assign page_slug = page.url | split: '/' | last | default: 'home' -%}
+<body class="page-{{ page_slug }}">
   {% include gtm_body.html %}
 
   {% include nav.html %}

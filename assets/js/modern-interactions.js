@@ -42,6 +42,19 @@ function initScrollAnimations() {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
+
+    // Safety net: reveal anything already in (or above) the viewport right away,
+    // and again after load. This guarantees above-the-fold content is never left
+    // hidden if the IntersectionObserver callback is slow or never fires.
+    const revealInView = () => {
+        document.querySelectorAll('.animate-on-scroll:not(.animate)').forEach((el) => {
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+                el.classList.add('animate');
+            }
+        });
+    };
+    revealInView();
+    window.addEventListener('load', () => setTimeout(revealInView, 200));
 }
 
 // Count up animation for statistics - DISABLED (Using enhanced version in stats-calculator-simple.js)
@@ -74,44 +87,26 @@ function animateCount(element) {
     }, duration / steps);
 }
 
-// Smooth scrolling for navigation links
+// Smooth scrolling handled by custom.js (loaded on every page)
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('a[href^="#"], .cta-button[href]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            // Handle internal links
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const offsetTop = target.offsetTop - 100;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
+    // No-op: smooth scroll is handled globally by custom.js
 }
 
-// Parallax effects for hero section
+// Parallax effects for hero section background only
 function initParallaxEffects() {
     const heroSection = document.querySelector('.intro-header.big-img');
-    
-    if (heroSection) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxSpeed = 0.5;
-            
-            if (scrolled < heroSection.offsetHeight) {
-                heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-            }
-        });
-    }
+    if (!heroSection) return;
+
+    // Only run if the user hasn't requested reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        if (scrolled < heroSection.offsetHeight) {
+            // Shift the background-position instead of translating the element
+            heroSection.style.backgroundPosition = `center ${50 + scrolled * 0.2}%`;
+        }
+    }, { passive: true });
 }
 
 // Enhanced navbar effects

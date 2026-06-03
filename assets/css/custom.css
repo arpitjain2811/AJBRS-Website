@@ -3,7 +3,6 @@
 
 /* Import modern fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 /* Modern Color Palette */
 :root {
@@ -171,18 +170,17 @@
   }
 }
 
-/* Scroll-triggered animations */
+/* Scroll-triggered animations (progressive enhancement).
+   Content is hidden ONLY when JS is available (html.js) and the element has not
+   yet been revealed. Without JS, or if the observer never fires, content stays
+   visible — it can never be permanently hidden behind a missing animation. */
 .animate-on-scroll {
-  opacity: 0;
-  transform: translateY(50px);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Ensure above-the-fold content is visible immediately */
-.about-section,
-.stats-section {
-  opacity: 1;
-  transform: translateY(0);
+html.js .animate-on-scroll:not(.animate) {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 .animate-on-scroll.animate {
@@ -190,7 +188,7 @@
   transform: translateY(0);
 }
 
-.animate-on-scroll.slide-left {
+html.js .animate-on-scroll.slide-left:not(.animate) {
   transform: translateX(-50px);
 }
 
@@ -198,7 +196,7 @@
   transform: translateX(0);
 }
 
-.animate-on-scroll.slide-right {
+html.js .animate-on-scroll.slide-right:not(.animate) {
   transform: translateX(50px);
 }
 
@@ -1271,11 +1269,6 @@ a:hover, a:focus {
   body:not(.light-mode):not(.dark-mode) .navbar-custom .nav-link:hover {
     color: #ffffff !important;
     background-color: rgba(59, 130, 246, 0.2) !important;
-  }
-  
-  body:not(.light-mode):not(.dark-mode) .navbar-custom .nav-link:hover {
-    background-color: rgba(59, 130, 246, 0.2);
-    color: #ffffff;
   }
 }
 
