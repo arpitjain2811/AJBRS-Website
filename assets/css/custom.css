@@ -1894,3 +1894,30 @@ body.dark-mode #back-to-top, body.dark-mode .back-to-top {
     hyphens: auto;
   }
 }
+
+/* Stats cards (Nov 2026). Three in a row, or one per row on phones: never two and a lone third.
+   The site-wide h2 underline sat at the left edge under each number; the card's top bar is the
+   accent, so the numbers drop it. No glow on the numbers; lighter colours in dark mode. */
+.stats-container { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+@media (max-width: 640px) { .stats-container { grid-template-columns: 1fr; } }
+.stat-box { padding: 2.25rem 1.25rem; }
+.stat-box .stat-number { font-size: clamp(2.5rem, 5vw, 3.75rem); padding-bottom: 0; margin-bottom: 0.75rem; filter: none; }
+.stat-box .stat-number::after { display: none; }
+.stat-box .stat-number.counter-animating,
+.stat-box .stat-number.counter-complete { animation: none; filter: none; }
+.stat-description { font-size: 1rem; line-height: 1.4; }
+body.dark-mode .stat-box .stat-number { background-image: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%); }
+body.dark-mode .stat-description { color: #cbd5e1; }
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) .stat-box .stat-number { background-image: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%); }
+  body:not(.light-mode):not(.dark-mode) .stat-description { color: #cbd5e1; }
+}
+
+/* Centred headings get a centred underline (it sat at the left under "Ready to Apply?"). */
+.cta-container h2::after, .text-center h2::after { left: 50%; transform: translateX(-50%); }
+
+/* Footer icons: the circle (45px) was wider than its 40px box, and Safari let the overflow fall
+   to one side. Box = circle, equal gaps, so every browser centres the row. */
+footer .footer-links .fa-stack { width: 2em; height: 2em; line-height: 2em; }
+footer .footer-links .fa-stack-1x, footer .footer-links .fa-stack-2x { left: 0; width: 100%; text-align: center; }
+footer .footer-links li { margin: 0 0.3rem !important; }
