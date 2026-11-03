@@ -1921,3 +1921,21 @@ body.dark-mode .stat-description { color: #cbd5e1; }
 footer .footer-links .fa-stack { width: 2em; height: 2em; line-height: 2em; }
 footer .footer-links .fa-stack-1x, footer .footer-links .fa-stack-2x { left: 0; width: 100%; text-align: center; }
 footer .footer-links li { margin: 0 0.3rem !important; }
+
+/* Stats, round 2 (Nov 2026). The section sits on the page background like the others (no panel of
+   its own, no box around the cards); the number never wraps ("₹130K" broke before the K); the labels
+   read like the feature card titles: same colour and weight, normal case. */
+.stats-section, body.dark-mode .stats-section { background: transparent; box-shadow: none; }
+.stats-section::before { display: none; }
+.stats-container, body.dark-mode .stats-container {
+  background: transparent; border: none; box-shadow: none; padding: 0;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.stat-box .stat-number { white-space: nowrap; font-size: clamp(2.25rem, 3.6vw, 3.25rem); }
+.stat-description { text-transform: none; letter-spacing: normal; font-size: 1.15rem; font-weight: 700; color: var(--gray-900); }
+body.dark-mode .stat-description { color: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) .stats-section { background: transparent; box-shadow: none; }
+  body:not(.light-mode):not(.dark-mode) .stats-container { background: transparent; border: none; box-shadow: none; }
+  body:not(.light-mode):not(.dark-mode) .stat-description { color: #ffffff; }
+}
