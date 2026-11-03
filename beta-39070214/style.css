@@ -134,3 +134,6 @@ td a { color: var(--copper); }
 .pillars > div { border-top: 3px solid var(--copper); padding-top: 14px; }
 .pillars p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.6; }
 @media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
+/* a one-line footer */
+.site-footer { padding: 22px 0; font-size: 13.5px; }
+.site-footer .wrap { display: block; }
