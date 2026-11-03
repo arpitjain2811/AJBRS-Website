@@ -152,9 +152,9 @@
             const totalScholarships = publicationsCount * SCHOLARSHIP_AMOUNT;
 
             // Update the DOM elements with animations
-            updateStatElement('[data-stat="scholarships"]', formatCurrency(totalScholarships), true);
-            updateStatElement('[data-stat="recipients"]', recipientsCount, true);
-            updateStatElement('[data-stat="publications"]', publicationsCount, true);
+            updateStatElement('[data-stat="scholarships"]', formatCurrency(totalScholarships), false);
+            updateStatElement('[data-stat="recipients"]', recipientsCount, false);
+            updateStatElement('[data-stat="publications"]', publicationsCount, false);
 
             console.log('Stats updated:', {
                 recipients: recipientsCount,

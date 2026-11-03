@@ -21,8 +21,8 @@ title: Past Recipients
 * [Parva Chowdhury](https://www.linkedin.com/in/parvachowdhury/)
 
 ## 2024
-* Harshit M
-* [Siddh Bharadwaj](https://www.linkedin.com/in/siddh-bhardwaj-45a7b8210/)
+* Harshith M
+* [Siddh Bhardwaj](https://www.linkedin.com/in/siddh-bhardwaj-45a7b8210/)
 * [Pushkar Bhat](https://www.linkedin.com/in/pushkar-bhat/)
 * [Karthik Shenoy](https://www.linkedin.com/in/karthikshenoy7/)
 
