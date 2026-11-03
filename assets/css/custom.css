@@ -2006,3 +2006,10 @@ main#content .row > div > ul > li, main#content .row > div > ol > li { text-alig
   body.page-how_to_apply main#content .row > div > ul > li,
   body.page-publications main#content .row > div > ul > li { text-align: justify; }
 }
+
+/* Phones: compact stat cards; the call-to-action button stays on one line. */
+@media (max-width: 640px) {
+  .stat-box { padding: 1.25rem 1rem; }
+  .stat-box .stat-number { margin-bottom: 0.25rem; }
+  .cta-button { white-space: nowrap; font-size: 0.9rem; padding: 0.9rem 1.5rem; }
+}
