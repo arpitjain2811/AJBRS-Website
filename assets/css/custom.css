@@ -1939,3 +1939,70 @@ body.dark-mode .stat-description { color: #ffffff; }
   body:not(.light-mode):not(.dark-mode) .stats-container { background: transparent; border: none; box-shadow: none; }
   body:not(.light-mode):not(.dark-mode) .stat-description { color: #ffffff; }
 }
+
+/* ==========================================================================
+   Design pass, Nov 2026. Calmer and easier to read: content is never hidden
+   behind scroll animations, headings are sized for reading rather than
+   shouting, sections sit closer together, and the call to action is legible.
+   ========================================================================== */
+
+/* 1. Nothing waits for a scroll animation to become visible. */
+html.js .animate-on-scroll:not(.animate),
+.animate-on-scroll, .animate-on-scroll.animate,
+.timeline-entry {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none;
+}
+.stagger-children > *, .stats-section, .features-section, .about-section, .cta-section,
+.intro-header .page-heading h1, .intro-header .page-heading .page-subheading {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* 2. A quiet page background (no blurred colour blobs behind the text). */
+body::before { display: none !important; }
+
+/* 3. Headings: one readable scale. */
+.section-title { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: 2.25rem; }
+main#content h2:not(.section-title):not(.stat-number) { font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 800; }
+.intro-header:not(.big-img) .page-heading h1 { font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 800; }
+.intro-header.big-img .page-heading h1,
+.intro-header.big-img .post-heading h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: 0.06em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  filter: none;
+}
+.intro-header.big-img .page-heading .page-subheading { font-size: clamp(1rem, 2vw, 1.25rem); padding: 0.6rem 1.4rem; }
+main#content p, main#content li { line-height: 1.7; }
+
+/* 4. Sections closer together; a shorter hero. */
+.about-section, .stats-section, .features-section { margin: 3.5rem 0; padding: 0; }
+.feature-card { padding: 2rem 1.5rem; }
+.feature-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+.intro-header.big-img { min-height: 0; }
+.intro-header.big-img .page-heading { padding: 7rem 0 6rem; }
+
+/* 5. Call to action: white heading on a calmer navy-to-blue panel. */
+.cta-section {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  padding: 3.5rem 1.5rem;
+  margin: 3.5rem 0;
+}
+.cta-section::after { display: none; }
+.cta-container h2, body.dark-mode .cta-container h2 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+  text-shadow: none !important;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+.cta-container p { color: rgba(255, 255, 255, 0.92) !important; text-shadow: none !important; }
+
+/* 6. Justify only running text: paragraphs, and the rules and citations. Short
+      lines (the contact details, the names) stay left-aligned. */
+main#content .row > div > ul > li, main#content .row > div > ol > li { text-align: left; }
+@media (min-width: 576px) {
+  body.page-how_to_apply main#content .row > div > ul > li,
+  body.page-publications main#content .row > div > ul > li { text-align: justify; }
+}

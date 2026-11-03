@@ -114,8 +114,11 @@ function initTimelineAnimation() {
     // For each year, create a timeline entry
     for (let i = 0; i < headings.length; i++) {
       const year = headings[i].textContent;
-      const recipients = lists[i];
-      if (!recipients) continue;
+      // The list that follows this year's heading (not the i-th list on the page: a list that
+      // swallowed the next heading used to shift every year by one).
+      let recipients = headings[i].nextElementSibling;
+      while (recipients && recipients.tagName !== 'UL' && recipients.tagName !== 'H2') recipients = recipients.nextElementSibling;
+      if (!recipients || recipients.tagName !== 'UL') continue;
 
       const timelineEntry = document.createElement('div');
       timelineEntry.classList.add('timeline-entry');

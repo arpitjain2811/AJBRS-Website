@@ -11,6 +11,7 @@ title: Past Recipients
 * [Vikramaditya Roy](https://www.linkedin.com/in/vikramaditya-roy-8a0253302/)
 * [T Rama Mohan Aniketh](https://www.linkedin.com/in/aniketh-tadavarthy-60844a2aa/)
 * Aayush M Pai
+
 ## 2025
 * [Pragya Gupta](https://www.linkedin.com/in/pragya-gupta-503714367/)
 * [Ruthvik Avadhanam](https://www.linkedin.com/in/ruthvik-avadhanam-b0a710253/)
