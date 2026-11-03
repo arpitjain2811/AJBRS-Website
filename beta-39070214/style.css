@@ -137,3 +137,5 @@ td a { color: var(--copper); }
 /* a one-line footer */
 .site-footer { padding: 22px 0; font-size: 13.5px; }
 .site-footer .wrap { display: block; }
+/* no footer: a little room after the last section */
+body { padding-bottom: 48px; }
