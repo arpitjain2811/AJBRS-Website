@@ -3,6 +3,14 @@ layout: page
 title: Past Recipients
 ---
 
+## 2026
+* Anirudh Anand
+* Harsh Mangesh Dagare
+* Pushkar Ojha
+* Akhilesh Satish Acharya
+* Vikramaditya Roy
+* T Rama Mohan Aniketh
+* Aayush M Pai
 ## 2025
 * [Pragya Gupta](https://www.linkedin.com/in/pragya-gupta-503714367/)
 * [Ruthvik Avadhanam](https://www.linkedin.com/in/ruthvik-avadhanam-b0a710253/)

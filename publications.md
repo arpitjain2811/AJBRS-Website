@@ -3,6 +3,12 @@ layout: page
 title: Publications
 ---
 
+## 2026
+* Anand, Anirudh, and Divya Rao. [“Design and Implementation of a Secure, Tor-Integrated File Sharing Framework using Hybrid Cryptography.”](https://doi.org/10.1109/ICSCCC69031.2026.11600364) In 2026 Fourth International Conference on Secure Cyber Computing and Communications (ICSCCC), pp. 320–325. IEEE, 2026.
+* Dagare, Harsh Mangesh, Pushkar Ojha, Akhilesh Satish Acharya, U. Shivani Sri Varshini, and G. Pradeep Reddy. [“Hybrid ConvLSTM–ST-GAT with Temporal Self-Attention for Spatiotemporal Crime Hotspot Prediction and Cross-City Generalization.”](https://doi.org/10.1109/ICCPCT70290.2026.11654744) In 2026 9th International Conference on Circuit, Power & Computing Technologies (ICCPCT), pp. 1041–1047. IEEE, 2026.
+* Roy, Vikramaditya, T. Rama Mohan Aniketh, Aayush M. Pai, U. Shivani Sri Varshini, and G. Pradeep Reddy. [“SISA Based Machine Unlearning for Credit Card Default Prediction with Shard Optimization.”](https://doi.org/10.1109/ICISC69558.2026.11681709) In 2026 10th International Conference on Inventive Systems and Control (ICISC), pp. 1–9. IEEE, 2026.
+
+
 ## 2025
 * Pragya Gupta, and Ruthvik Avadhanam,  Manohara M. M. Pai, Radhika M. Pai. [“Sequential Deep Learning Model Development for Battery Remaining Useful Life Forecasting and Anomaly Detection.”](https://ieeexplore.ieee.org/document/10664735) In 2024 IEEE 19th Conference on Industrial Electronics and Applications (ICIEA), pp. 1–6. IEEE, 2024.
 * Chakraborty, Abhigyan, and K. C. Akshay. [“Penetration Testing IoT Devices to Discover Critical Vulnerabilities.”](https://ieeexplore.ieee.org/document/10811719) In 2024 2nd International Conference on Recent Advances in Information Technology for Sustainable Development (ICRAIS), pp. 54–59. IEEE, 2024.
