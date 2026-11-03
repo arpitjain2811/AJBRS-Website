@@ -4,11 +4,11 @@ title: Past Recipients
 ---
 
 ## 2026
-* Anirudh Anand
-* Harsh Mangesh Dagare
-* Pushkar Ojha
-* Akhilesh Satish Acharya
-* Vikramaditya Roy
+* [Anirudh Anand](https://www.linkedin.com/in/anirudh-p-anand-147630281/)
+* [Harsh Mangesh Dagare](https://www.linkedin.com/in/harsh-dagare/)
+* [Pushkar Ojha](https://www.linkedin.com/in/pushkar-ojha-723196258/)
+* [Akhilesh Satish Acharya](https://www.linkedin.com/in/akhilesh-satish-acharya-943446378/)
+* [Vikramaditya Roy](https://www.linkedin.com/in/vikramaditya-roy-8a0253302/)
 * T Rama Mohan Aniketh
 * Aayush M Pai
 ## 2025
