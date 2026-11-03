@@ -166,9 +166,9 @@
             console.error('Error calculating stats:', error);
             
             // Fallback to hardcoded values
-            updateStatElement('[data-stat="scholarships"]', '₹100K');
-            updateStatElement('[data-stat="recipients"]', '13');
-            updateStatElement('[data-stat="publications"]', '10');
+            updateStatElement('[data-stat="scholarships"]', '₹130K');
+            updateStatElement('[data-stat="recipients"]', '20');
+            updateStatElement('[data-stat="publications"]', '13');
         }
     }
 
