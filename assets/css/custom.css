@@ -1880,3 +1880,17 @@ body.dark-mode #back-to-top, body.dark-mode .back-to-top {
     animation: none !important;
   }
 }
+
+/* Body text justified (Dr. Sanjay Singh, Oct 2026): the About paragraphs and the text on content
+   pages. Cards, stats and the call to action stay centred. Hyphenation keeps word gaps small;
+   on narrow phones justified text leaves big gaps, so it starts at 576px. */
+@media (min-width: 576px) {
+  main#content .about-content p,
+  main#content .row > div > p,
+  main#content .row > div > ul > li,
+  main#content .row > div > ol > li {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
