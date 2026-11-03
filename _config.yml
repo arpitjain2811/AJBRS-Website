@@ -273,6 +273,11 @@ kramdown:
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
+# The redesign beta: unlisted (not linked, not in the sitemap, not indexed). Remove once it ships.
+  - scope:
+      path: "beta-39070214"
+    values:
+      sitemap: false
   -
     scope:
       path: ""
