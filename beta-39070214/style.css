@@ -128,3 +128,9 @@ td:last-child, th:last-child { text-align: right; white-space: nowrap; }
 td a { color: var(--copper); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 8px 0 48px; }
 @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+/* about */
+.about { font-size: 1.12rem; max-width: 62ch; margin: 0 0 28px; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pillars > div { border-top: 3px solid var(--copper); padding-top: 14px; }
+.pillars p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.6; }
+@media (max-width: 760px) { .pillars { grid-template-columns: 1fr; } }
