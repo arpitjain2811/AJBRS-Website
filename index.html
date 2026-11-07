@@ -1,90 +1,54 @@
 ---
-layout: page
-title: AJBRS
-subtitle: Arpit Jain Best Researcher Scholarship
-description: "A yearly award for the best research published by students of the School of Computer Engineering at Manipal Institute of Technology: its recipients, their papers, and how to apply."
-cover-img: /assets/img/cover.jpg
-js: ["/assets/js/custom.js", "/assets/js/modern-interactions.js", "/assets/js/stats-calculator-simple.js"]
+title: Home
+redirect_from:
+  - /beta-39070214/
+  - /beta-39070214/index.html
 ---
+{%- assign years = site.data.recipients -%}
+{%- assign n_papers = 0 -%}
+{%- assign n_people = 0 -%}
+{%- for y in years -%}
+  {%- assign n_papers = n_papers | plus: y.papers.size -%}
+  {%- for p in y.papers -%}{%- for a in p.authors -%}{%- if a.recipient -%}{%- assign n_people = n_people | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+{%- endfor -%}
+{%- assign total = n_papers | times: site.award_per_paper -%}
+{%- assign rem = total | modulo: 100000 -%}
+{%- if rem == 0 -%}{%- assign lakh = total | divided_by: 100000 -%}{%- else -%}{%- assign lakh = total | divided_by: 100000.0 | round: 1 -%}{%- endif -%}
+{%- assign latest = years.first -%}
+<section class="hero"><div class="wrap">
+  <h1>Arpit Jain Best Researcher Scholarship</h1>
+  <p class="lead">A yearly award for the best research published by students of the School of Computer Engineering at Manipal Institute of Technology.</p>
+  <div class="btns"><a class="btn btn-primary" href="{{ '/how-to-apply/' | relative_url }}">How to apply</a><a class="btn btn-ghost" href="{{ '/recipients/' | relative_url }}">See the recipients</a></div>
+  <div class="facts">
+    <div class="fact"><b>{{ years.last.year }}</b><span>first awarded</span></div>
+    <div class="fact"><b>{{ n_people }}</b><span>recipients</span></div>
+    <div class="fact"><b>{{ n_papers }}</b><span>papers</span></div>
+    <div class="fact"><b>₹{{ lakh }} lakh</b><span>awarded</span></div>
+  </div>
+</div></section>
 
-<section class="about-section animate-on-scroll">
-    <h1 class="section-title">About the Scholarship</h1>
+<section class="block"><div class="wrap">
+  <h2>About the scholarship</h2>
+  <p class="about">The scholarship recognises undergraduate and postgraduate students of the School of Computer Engineering who publish their research. Each year the School&rsquo;s research committee reviews the papers its students have published, scores each one on the standing of the conference or journal, and awards the authors of the best. The aim is to encourage students to take their work to well-ranked venues early in their careers.</p>
+  <div class="pillars">
+    <div><h3>Recognition</h3><p>Selected papers and their authors are recognised by the School.</p></div>
+    <div><h3>Prize money</h3><p>Awarded for each selected paper.</p></div>
+    <div><h3>Better venues</h3><p>The scoring rewards papers in well-ranked conferences.</p></div>
+  </div>
+</div></section>
 
-    <div class="about-content">
-        <p>The Arpit Jain Best Researcher Scholarship (AJBRS) is a prestigious research award offered by the School of Computer Engineering at Manipal Institute of Technology (MIT), Karnataka, India. The scholarship was established in 2023 with an aim to foster a culture of academic excellence and innovation. The program specifically targets undergraduate and postgraduate students who demonstrate exceptional research capabilities through their published work in reputable academic venues.</p>
-        
-        <p>What sets AJBRS apart is its comprehensive evaluation system that recognizes not just publication achievement, but also the quality and impact of the research work. The scholarship serves a dual purpose: it provides financial support to promising researchers while also encouraging students to pursue high-quality research publications in prestigious conferences and journals.</p>
-        
-        <p>Through this scholarship, the School aims to create a supportive ecosystem that enables students to contribute meaningfully to their field of study while developing essential research skills that will benefit their future academic and professional endeavors. The award not only provides financial assistance but also bestows recognition that can significantly enhance a student's academic portfolio.</p>
-    </div>
-</section>
+<section class="block" id="apply"><div class="wrap">
+  <p class="eyebrow">For students</p>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Publish</h3><p>Publish your research as first author, with the School of Computer Engineering as your affiliation. Papers in Scopus-indexed conferences are preferred.</p></div>
+    <div class="step"><span class="n">2</span><h3>Apply</h3><p>Send the details of your paper to the School in the format it asks for.</p></div>
+    <div class="step"><span class="n">3</span><h3>Selection and award</h3><p>The School&rsquo;s research committee scores each paper on its venue and citations.</p></div>
+  </div>
+  <a class="more" href="{{ '/how-to-apply/' | relative_url }}">Eligibility and the scoring rubric →</a>
+</div></section>
 
-<section class="stats-section animate-on-scroll">
-    <h2 class="section-title">Scholarship Impact</h2>
-    
-    <div class="stats-container stagger-children">
-        <!-- First Stat -->
-        <div class="stat-box">
-            <h2 class="stat-number" data-stat="scholarships">₹130K</h2>
-            <p class="stat-description">Granted in scholarships since inception</p>
-        </div>
-
-        <!-- Second Stat -->
-        <div class="stat-box">
-            <h2 class="stat-number" data-stat="recipients">20</h2>
-            <p class="stat-description">Recipients so far</p>
-        </div>
-
-        <!-- Third Stat -->
-        <div class="stat-box">
-            <h2 class="stat-number" data-stat="publications">13</h2>
-            <p class="stat-description">Research papers published</p>
-        </div>
-    </div>
-</section>
-
-<section class="features-section animate-on-scroll">
-    <h2 class="section-title">What the Scholarship Offers</h2>
-    
-    <div class="features-container stagger-children">
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-award"></i>
-            </div>
-            <h3>Recognition</h3>
-            <p>Acknowledges exceptional research contributions by students in the School of Computer Engineering.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-hand-holding-usd"></i>
-            </div>
-            <h3>Financial Support</h3>
-            <p>Provides monetary assistance to help students focus on their research endeavors.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <h3>Academic Growth</h3>
-            <p>Encourages students to develop essential research skills for future academic success.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-newspaper"></i>
-            </div>
-            <h3>Publication Quality</h3>
-            <p>Emphasizes the importance of publishing in reputable academic venues.</p>
-        </div>
-    </div>
-</section>
-
-<section class="cta-section animate-on-scroll">
-    <div class="cta-container">
-        <h2>Ready to Apply?</h2>
-        <p>If you're a student in MIT's School of Computer Engineering with published research, you may be eligible for the AJBRS.</p>
-        <a href="how_to_apply" class="cta-button">Learn How to Apply <i class="fas fa-arrow-right"></i></a>
-    </div>
-</section>
+<section class="block"><div class="wrap">
+  <div class="year-head"><div><p class="eyebrow">Latest</p><h2>{{ latest.year }} recipients</h2></div><a class="more" href="{{ '/recipients/' | relative_url }}">All years →</a></div>
+  {% include papers.html papers=latest.papers %}
+</div></section>

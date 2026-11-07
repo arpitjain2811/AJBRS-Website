@@ -1,25 +1,53 @@
----
-layout: base
----
-
-<div class="intro-header"></div>
-
-<main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
-  {% if page.before-content %}
-    <div class="before-content">
-      {% for file in page.before-content %}
-        {% include {{ file }} %}
-      {% endfor %}
-    </div>
-  {% endif %}
-
-  {{ content }}
-
-  {% if page.after-content %}
-    <div class="after-content">
-      {% for file in page.after-content %}
-        {% include {{ file }} %}
-      {% endfor %}
-    </div>
-  {% endif %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- if page.url == "/" %}
+  {%- assign page_title = site.title %}
+  {%- else %}
+  {%- assign page_title = page.title | append: " · AJBRS" %}
+  {%- endif %}
+  {%- assign page_desc = page.description | default: site.description %}
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_desc | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_desc | escape }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ '/assets/img/share-card.png' | absolute_url }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AJBRS, Arpit Jain Best Researcher Scholarship, School of Computer Engineering, MIT Manipal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1B2A4A">
+  <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="icon" href="{{ '/assets/img/favicon-32.png' | relative_url }}" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {%- if jekyll.environment == "production" and site.gtag %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gtag }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','{{ site.gtag }}');</script>
+  {%- endif %}
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="{{ '/' | relative_url }}">{% include logo.svg %}<span><span class="brand-name">AJBRS</span><span class="brand-sub">Arpit Jain Best Researcher Scholarship</span></span></a>
+  <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+  <nav class="nav" id="nav">
+    {%- for item in site.nav %}
+    <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="on" aria-current="page"{% endif %}>{{ item.title }}</a>
+    {%- endfor %}
+  </nav>
+</div></header>
+<main>
+{{ content }}
 </main>
+<script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

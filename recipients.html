@@ -1,0 +1,17 @@
+---
+title: Recipients
+description: Every year's recipients of the Arpit Jain Best Researcher Scholarship and the papers they were awarded for.
+permalink: /recipients/
+redirect_from:
+  - /past_recipients/
+  - /publications/
+  - /beta-39070214/recipients.html
+---
+<div class="wrap">
+  <div class="page-title"><h1>Recipients</h1><p class="muted">Every year&rsquo;s recipients and the papers they were awarded for.</p></div>
+  {%- for y in site.data.recipients %}
+  <section class="year" id="y{{ y.year }}"><h2 class="label">{{ y.year }}</h2><div>
+    {% include papers.html papers=y.papers %}
+  </div></section>
+  {%- endfor %}
+</div>

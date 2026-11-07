@@ -1,0 +1,139 @@
+# Every year's awarded papers, newest year first.
+# An author with `recipient: true` received the scholarship; `linkedin` links their name.
+# The home page's numbers (recipients, papers, amount awarded) are counted from this file.
+
+- year: 2026
+  papers:
+    - title: "Design and Implementation of a Secure, Tor-Integrated File Sharing Framework using Hybrid Cryptography"
+      url: https://doi.org/10.1109/ICSCCC69031.2026.11600364
+      venue: "2026 Fourth International Conference on Secure Cyber Computing and Communications (ICSCCC)"
+      publisher: IEEE
+      published: 2026
+      authors:
+        - {name: "Anirudh Anand", recipient: true, linkedin: "https://www.linkedin.com/in/anirudh-p-anand-147630281/"}
+        - {name: "Divya Rao"}
+    - title: "Hybrid ConvLSTM–ST-GAT with Temporal Self-Attention for Spatiotemporal Crime Hotspot Prediction and Cross-City Generalization"
+      url: https://doi.org/10.1109/ICCPCT70290.2026.11654744
+      venue: "2026 9th International Conference on Circuit, Power & Computing Technologies (ICCPCT)"
+      publisher: IEEE
+      published: 2026
+      authors:
+        - {name: "Harsh Mangesh Dagare", recipient: true, linkedin: "https://www.linkedin.com/in/harsh-dagare/"}
+        - {name: "Pushkar Ojha", recipient: true, linkedin: "https://www.linkedin.com/in/pushkar-ojha-723196258/"}
+        - {name: "Akhilesh Satish Acharya", recipient: true, linkedin: "https://www.linkedin.com/in/akhilesh-satish-acharya-943446378/"}
+        - {name: "U. Shivani Sri Varshini"}
+        - {name: "G. Pradeep Reddy"}
+    - title: "SISA Based Machine Unlearning for Credit Card Default Prediction with Shard Optimization"
+      url: https://doi.org/10.1109/ICISC69558.2026.11681709
+      venue: "2026 10th International Conference on Inventive Systems and Control (ICISC)"
+      publisher: IEEE
+      published: 2026
+      authors:
+        - {name: "Vikramaditya Roy", recipient: true, linkedin: "https://www.linkedin.com/in/vikramaditya-roy-8a0253302/"}
+        - {name: "T. Rama Mohan Aniketh", recipient: true, linkedin: "https://www.linkedin.com/in/aniketh-tadavarthy-60844a2aa/"}
+        - {name: "Aayush M. Pai", recipient: true, linkedin: "https://www.linkedin.com/in/aayush-pai-bb191a284/"}
+        - {name: "U. Shivani Sri Varshini"}
+        - {name: "G. Pradeep Reddy"}
+
+- year: 2025
+  papers:
+    - title: "Sequential Deep Learning Model Development for Battery Remaining Useful Life Forecasting and Anomaly Detection"
+      url: https://ieeexplore.ieee.org/document/10664735
+      venue: "2024 IEEE 19th Conference on Industrial Electronics and Applications (ICIEA)"
+      publisher: IEEE
+      published: 2024
+      authors:
+        - {name: "Pragya Gupta", recipient: true, linkedin: "https://www.linkedin.com/in/pragya-gupta-503714367/"}
+        - {name: "Ruthvik Avadhanam", recipient: true, linkedin: "https://www.linkedin.com/in/ruthvik-avadhanam-b0a710253/"}
+        - {name: "Manohara M. M. Pai"}
+        - {name: "Radhika M. Pai"}
+    - title: "Penetration Testing IoT Devices to Discover Critical Vulnerabilities"
+      url: https://ieeexplore.ieee.org/document/10811719
+      venue: "2024 2nd International Conference on Recent Advances in Information Technology for Sustainable Development (ICRAIS)"
+      publisher: IEEE
+      published: 2024
+      authors:
+        - {name: "Abhigyan Chakraborty", recipient: true, linkedin: "https://www.linkedin.com/in/abhigyan-chakraborty-b86b39188/"}
+        - {name: "K. C. Akshay"}
+    - title: "Performance Analysis of Deep Neural Networks and YOLOv8n Algorithm in Early Detection of Skin Cancer"
+      url: https://ieeexplore.ieee.org/document/10811744
+      venue: "2024 2nd International Conference on Recent Advances in Information Technology for Sustainable Development (ICRAIS)"
+      publisher: IEEE
+      published: 2024
+      authors:
+        - {name: "Akshat Garg", recipient: true, linkedin: "https://www.linkedin.com/in/akshat-garg-a40415224/"}
+        - {name: "Manjula Shenoy"}
+    - title: "UAV-Assisted IRS-SIMO System in 6G Communication"
+      url: https://ieeexplore.ieee.org/document/11076768
+      venue: "2025 International Conference on Microwave, Optical, and Communication Engineering (ICMOCE)"
+      publisher: IEEE
+      published: 2025
+      authors:
+        - {name: "Pranav Chavare", recipient: true, linkedin: "https://www.linkedin.com/in/pranav-chavare/"}
+        - {name: "Pankaj Kumar"}
+        - {name: "Nikita Goel"}
+        - {name: "Manoj Tolani"}
+    - title: "Identification and Mitigation of Advanced Cyber Threats in Real-World Environments"
+      url: https://doi.org/10.1007/978-981-96-1206-2_3
+      venue: "World Conference on Information Systems for Business Management"
+      publisher: Springer Nature
+      published: 2025
+      authors:
+        - {name: "Parva Chowdhury", recipient: true, linkedin: "https://www.linkedin.com/in/parvachowdhury/"}
+        - {name: "Aditya Goutam Shah"}
+        - {name: "Mamatha Balachandra"}
+        - {name: "Radhika Kamath"}
+
+- year: 2024
+  papers:
+    - title: "Anomaly Detection using Federated Learning: A Performance Based Parameter Aggregation Approach"
+      url: https://doi.org/10.1109/CONIT59222.2023.10205549
+      venue: "2023 3rd International Conference on Intelligent Technologies (CONIT)"
+      publisher: IEEE
+      published: 2023
+      authors:
+        - {name: "Pushkar Bhat", recipient: true, linkedin: "https://www.linkedin.com/in/pushkar-bhat/"}
+        - {name: "Manohara M. M. Pai"}
+        - {name: "Radhika M. Pai"}
+    - title: "Segregation of Dehusked Arecanut using Artificial Intelligence Technique on Raspberry Pi"
+      url: https://doi.org/10.1109/NKCon59507.2023.10395973
+      venue: "2023 IEEE North Karnataka Subsection Flagship International Conference (NKCon)"
+      publisher: IEEE
+      published: 2023
+      authors:
+        - {name: "N. D. Adesh"}
+        - {name: "M. Harshith", recipient: true}
+        - {name: "Siddh Bhardwaj", recipient: true, linkedin: "https://www.linkedin.com/in/siddh-bhardwaj-45a7b8210/"}
+        - {name: "A. Renuka"}
+    - title: "Siamese Network Based Anomaly Detection Framework for Robust Federated Learning"
+      url: https://doi.org/10.1109/CONIT59222.2023.10205848
+      venue: "2023 3rd International Conference on Intelligent Technologies (CONIT)"
+      publisher: IEEE
+      published: 2023
+      authors:
+        - {name: "Karthik Shenoy", recipient: true, linkedin: "https://www.linkedin.com/in/karthikshenoy7/"}
+        - {name: "Manohara M. M. Pai"}
+        - {name: "Radhika M. Pai"}
+
+- year: 2023
+  papers:
+    - title: "Cross Transferring Activity Recognition to Word Level Sign Language Detection"
+      url: https://doi.org/10.1109/CVPRW56347.2022.00273
+      venue: "2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)"
+      publisher: IEEE
+      published: 2022
+      authors:
+        - {name: "Srijith Radhakrishnan", recipient: true, linkedin: "https://www.linkedin.com/in/srijith-radhakrishnan/"}
+        - {name: "Nikhil C. Mohan"}
+        - {name: "Manisimha Varma"}
+        - {name: "Jaithra Varma"}
+        - {name: "Smitha N. Pai"}
+    - title: "Federated Learning for Colorectal Cancer Prediction"
+      url: https://doi.org/10.1109/GCAT55367.2022.9972224
+      venue: "2022 IEEE 3rd Global Conference for Advancement in Technology (GCAT)"
+      publisher: IEEE
+      published: 2022
+      authors:
+        - {name: "Yash Maurya", recipient: true, linkedin: "https://www.linkedin.com/in/yashmaurya/"}
+        - {name: "Prahaladh Chandrahasan", recipient: true, linkedin: "https://www.linkedin.com/in/prahaladh-chandrahasan/"}
+        - {name: "G. Poornalatha"}

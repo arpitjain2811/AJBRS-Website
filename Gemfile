@@ -1,9 +1,5 @@
-# frozen_string_literal: true
-
+# Local preview only; GitHub Pages builds with the same `github-pages` gem.
 source "https://rubygems.org"
 
-gem "jekyll", "~> 3.9.3"
-gem "kramdown-parser-gfm"
+gem "github-pages", group: :jekyll_plugins
 gem "webrick"
-gem "jekyll-paginate"
-gem "jekyll-sitemap"

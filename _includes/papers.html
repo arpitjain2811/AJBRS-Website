@@ -1,0 +1,18 @@
+{%- comment -%} A year's papers as cards. Pass `papers`. {%- endcomment -%}
+<div class="papers">
+{%- for p in include.papers %}
+  <article class="paper">
+    <p class="title"><a href="{{ p.url }}">{{ p.title }}</a></p>
+    <p class="authors">
+      {%- for a in p.authors -%}
+        {%- if a.recipient -%}
+          {%- if a.linkedin -%}<a class="who" href="{{ a.linkedin }}" title="{{ a.name }} on LinkedIn"><b>{{ a.name }}</b></a>{%- else -%}<b>{{ a.name }}</b>{%- endif -%}
+        {%- else -%}{{ a.name }}{%- endif -%}
+        {%- if forloop.rindex == 2 %} and {% elsif forloop.last == false %}, {% endif -%}
+      {%- endfor -%}
+    </p>
+    <p class="venue">{{ p.venue }}, {{ p.publisher }}, {{ p.published }}</p>
+    <a class="doi" href="{{ p.url }}">{% if p.url contains "doi.org" %}DOI{% else %}Paper{% endif %} ↗</a>
+  </article>
+{%- endfor %}
+</div>
