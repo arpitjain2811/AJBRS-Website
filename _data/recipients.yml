@@ -38,7 +38,7 @@
 - year: 2025
   papers:
     - title: "Sequential Deep Learning Model Development for Battery Remaining Useful Life Forecasting and Anomaly Detection"
-      url: https://ieeexplore.ieee.org/document/10664735
+      url: https://doi.org/10.1109/ICIEA61579.2024.10664735
       venue: "2024 IEEE 19th Conference on Industrial Electronics and Applications (ICIEA)"
       publisher: IEEE
       published: 2024
@@ -48,7 +48,7 @@
         - {name: "Manohara M. M. Pai"}
         - {name: "Radhika M. Pai"}
     - title: "Penetration Testing IoT Devices to Discover Critical Vulnerabilities"
-      url: https://ieeexplore.ieee.org/document/10811719
+      url: https://doi.org/10.1109/ICRAIS62903.2024.10811719
       venue: "2024 2nd International Conference on Recent Advances in Information Technology for Sustainable Development (ICRAIS)"
       publisher: IEEE
       published: 2024
@@ -56,7 +56,7 @@
         - {name: "Abhigyan Chakraborty", recipient: true, linkedin: "https://www.linkedin.com/in/abhigyan-chakraborty-b86b39188/"}
         - {name: "K. C. Akshay"}
     - title: "Performance Analysis of Deep Neural Networks and YOLOv8n Algorithm in Early Detection of Skin Cancer"
-      url: https://ieeexplore.ieee.org/document/10811744
+      url: https://doi.org/10.1109/ICRAIS62903.2024.10811744
       venue: "2024 2nd International Conference on Recent Advances in Information Technology for Sustainable Development (ICRAIS)"
       publisher: IEEE
       published: 2024
@@ -64,7 +64,7 @@
         - {name: "Akshat Garg", recipient: true, linkedin: "https://www.linkedin.com/in/akshat-garg-a40415224/"}
         - {name: "Manjula Shenoy"}
     - title: "UAV-Assisted IRS-SIMO System in 6G Communication"
-      url: https://ieeexplore.ieee.org/document/11076768
+      url: https://doi.org/10.1109/ICMOCE64100.2025.11076768
       venue: "2025 International Conference on Microwave, Optical, and Communication Engineering (ICMOCE)"
       publisher: IEEE
       published: 2025

@@ -37,7 +37,7 @@
 </head>
 <body>
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="{{ '/' | relative_url }}">{% include logo.svg %}<span><span class="brand-name">AJBRS</span><span class="brand-sub">Arpit Jain Best Researcher Scholarship</span></span></a>
+  <a class="brand" href="{{ '/' | relative_url }}">{% include logo.svg %}<span><span class="brand-name">AJBRS</span>{% unless page.url == "/" %}<span class="brand-sub">Arpit Jain Best Researcher Scholarship</span>{% endunless %}</span></a>
   <button class="menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
   <nav class="nav" id="nav">
     {%- for item in site.nav %}
